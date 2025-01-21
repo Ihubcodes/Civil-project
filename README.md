@@ -89,6 +89,9 @@ To adjust the app for additional features:
 
 **Download Option:**
 Users can download the result as an Excel file named `Loamy_Soil_material_requirements.xlsx`.
+from Google drive : https://drive.google.com/drive/folders/1EqXLwt6yUWcEesuDmo8d43idlrJR8sbN?usp=sharing
+link 2: https://drive.google.com/drive/folders/18spZb4noytrveOq9fOXwLAcz_WLRKTVx?usp=sharing
+Demo video: https://drive.google.com/file/d/1Lo4e7Nma_--s2fPVjUeeS5CQ27cnh_d2/view?usp=sharing
 
 ## Notes
 - Ensure the Excel files are consistently formatted to avoid processing errors.
