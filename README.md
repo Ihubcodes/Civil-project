@@ -1,114 +1,122 @@
-# House Cost Estimation Application
+# BuildSmart
 
-This application allows users to estimate construction material requirements and their associated costs based on area size and soil type. The tool supports various soil types and calculates categorized materials for construction phases such as Foundation Work, Building Work, Flooring Work, and Ceiling Work. The results are presented in a user-friendly format and can be downloaded as an Excel file.
+BuildSmart is a Streamlit-based application that aids in analyzing 2D house plans and estimating construction materials for substructure and superstructure phases. It integrates advanced image analysis and data processing functionalities to streamline construction planning.
+
+---
 
 ## Features
 
-- **User Input**:
-  - Enter the total area (in square meters).
-  - Select a soil type (e.g., Rock Soil, Silt Soil, Sandy Soil, Clay Soil, or Loamy Soil).
-- **Dynamic Material Estimation**:
-  - Calculates materials required based on input parameters and soil-specific Excel files.
-  - Categorizes materials into construction phases:
-    - Foundation Work
-    - Building Work
-    - Flooring Work
-    - Ceiling Work
-- **Downloadable Output**:
-  - Provides the option to download the calculated results as an Excel file for offline use.
-- **Error Handling**:
-  - Handles invalid inputs and ensures a smooth user experience.
+1. **2D House Plan Analysis**:
+   - Users can upload a 2D house plan image.
+   - The application analyzes the image to validate if it is a house plan.
+   - Extracts details such as:
+     - Total built-up area.
+     - Room dimensions and areas.
+     - Doors, openings, windows, and other structural details.
 
-## How to Use
+2. **Material Estimation**:
+   - Uses the extracted built-up area to calculate the quantities of materials needed for substructure and superstructure stages.
+   - Provides stage-wise details of equipment, materials, updated quantities, units, and durations.
 
-1. Install the required libraries:
-    ```bash
-    pip install streamlit pandas pillow google-generativeai
-    ```
-2. Place the soil type Excel files in accessible locations and update their file paths in the `soil_files` dictionary within the script.
-3. Run the application:
-    ```bash
-    streamlit run app.py
-    ```
-4. Open the app in your browser, input the required details, and view the results.
+3. **Data Presentation**:
+   - Displays processed data in tabular format for:
+     - Substructure data.
+     - Superstructure data.
+     - Total material requirements.
+   - Includes an HTML preview of additional content.
 
-## Input Files
-The application relies on pre-structured Excel files for material calculation. Ensure the following files are present and paths are correctly updated:
+4. **Downloadable Output**:
+   - Generates an Excel file containing:
+     - Substructure data.
+     - Superstructure data.
+     - Total material summary.
 
-- Loamy Soil: `Copy of Loamy soil.xlsx`
-- Clay Soil: `Copy of Clay Soil Materials.xlsx`
-- Rock Soil: `Rocky Soil.xlsx`
-- Sandy Soil: `Copy of Sandy Soil.xlsx`
-- Silt Soil: `Copy of Silt Soil.xlsx`
+---
 
-Each file must:
-- Start with headers on the first row.
-- Contain columns for material type, quantity (as a value or range), and unit.
+## Setup and Installation
 
-## Code Structure
+### Prerequisites
+- Python 3.7 or above
+- Required Python libraries:
+  - `pandas`
+  - `numpy`
+  - `streamlit`
+  - `Pillow`
+  - `xlsxwriter`
 
-1. **User Interface**:
-    - Takes input for area and soil type.
-    - Displays calculated results categorized by construction phases.
+### Installation
 
-2. **Data Processing**:
-    - Reads the appropriate Excel file based on soil type.
-    - Processes material quantities and scales them based on area.
-    - Categorizes materials into construction phases.
+1. Clone this repository:
+   ```bash
+   git clone <repository_url>
+   cd BuildSmart
+   ```
 
-3. **Output Generation**:
-    - Results are displayed as interactive tables in the app.
-    - Allows downloading the output as an Excel file.
+2. Install the dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
 
-## Customization
-To adjust the app for additional features:
-- Update the `soil_files` dictionary to include new soil types or Excel paths.
-- Modify the categorization logic for materials in the `calculate_material_requirements_safe` function.
-- Customize prompts or error messages to enhance user experience.
+3. Ensure your Google Generative AI API key is available. Replace the placeholder `AIzaSyBl0w-RMMsvo1hZRQxnEz7vU6Gy8pX8Pe8` in the code with your actual API key.
 
-## Sample Output
+4. Place the necessary Excel files in the respective directories:
+   - Substructure Excel file: `D:\civil\Sub structure.xlsx`
+   - Superstructure Excel file: `D:\civil\Superstar.xlsx`
+   - HTML content file: `D:\civil\word.html`
 
-### Inputs:
-- **Area**: 500 square meters
-- **Soil Type**: Loamy Soil
+---
 
-### Outputs:
-**Material Requirements (Foundation Work):**
-| Material   | Total Quantity | Unit |
-|------------|----------------|------|
-| Cement     | 250            | bags |
-| Sand       | 500            | kg   |
+## Running the Application
 
-**Material Requirements (Building Work):**
-| Material       | Total Quantity | Unit |
-|----------------|----------------|------|
-| Steel Bars     | 300            | kg   |
-| Concrete Slabs | 400            | cubic meters |
+1. Start the Streamlit app:
+   ```bash
+   streamlit run <script_name>.py
+   ```
 
-**...Other Phases...**
+2. Open the local server URL (usually `http://localhost:8501`) in your web browser.
 
-**Download Option:**
-Users can download the result as an Excel file named `Loamy_Soil_material_requirements.xlsx`.
-from Google drive : https://drive.google.com/drive/folders/1EqXLwt6yUWcEesuDmo8d43idlrJR8sbN?usp=sharing
-link 2: https://drive.google.com/drive/folders/18spZb4noytrveOq9fOXwLAcz_WLRKTVx?usp=sharing
-Demo video: https://drive.google.com/file/d/1Lo4e7Nma_--s2fPVjUeeS5CQ27cnh_d2/view?usp=sharing
+3. Use the application:
+   - Upload a valid 2D house plan image.
+   - View the analyzed plan details.
+   - Access material estimation for substructure and superstructure.
+   - Download the processed data as an Excel file.
+
+---
+
+## Code Description
+
+### Image Analysis
+The application integrates the Google Generative AI API to analyze uploaded images and extract house plan details such as:
+- Built-up area.
+- Room dimensions and types.
+- Doors, windows, and openings.
+
+### Material Processing
+- Reads material data from Excel sheets for substructure and superstructure stages.
+- Computes updated quantities based on the built-up area extracted from the image.
+
+### Data Export
+Generates a downloadable Excel file consolidating all the processed data for construction planning.
+
+---
+
+## File Structure
+```plaintext
+.
+├── main.py                # Application script
+├── requirements.txt       # List of required Python libraries
+├── D:\civil\             # Directory containing external files
+│   ├── Sub structure.xlsx
+│   ├── Superstar.xlsx
+│   └── word.html
+```
+
+---
 
 ## Notes
-- Ensure the Excel files are consistently formatted to avoid processing errors.
-- The app assumes all input area measurements are in square meters. Adjust calculations if using different units.
-- The categorization rules for construction phases are customizable within the script.
+- Ensure valid 2D house plan images are uploaded for accurate analysis.
+- Modify file paths in the code if your data files are stored in different locations.
+- This application assumes well-structured Excel files with proper sheet names and data formats.
 
-## Troubleshooting
-- If the app fails to load a file, ensure the file path is correct and the file format is as expected.
-- For large areas or files, allow some time for calculations to complete.
-- Use `pip install` to resolve missing dependencies.
-
-## Future Enhancements
-- Add cost estimation for materials based on user-provided rates.
-- Include graphical representations of material distribution.
-- Enable multi-language support for broader accessibility.
-- Integrate database support for persistent data storage.
-
-## License
-This application is open-source. Feel free to customize and enhance it for your own use.
+---
 
